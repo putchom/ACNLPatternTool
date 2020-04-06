@@ -1,5 +1,6 @@
 <template>
   <div class="dummy-nav">
+    <LogoSVG />
     <div class="title">
       <div class="logo">
         <object class="svg" :data="logoSvg"></object>
@@ -30,7 +31,7 @@
 <script>
 import logoSvg from '/assets/images/ac_easel_opt.svg';
 // this works
-import LogoSVG from '../assets/images/ac_easel_opt.svg?inline';
+// import LogoSVG from '../assets/images/ac_easel_opt.svg?inline';
 // this doesn't but, it should
 import LogoSVG from '/assets/images/ac_easel_opt.svg?inline';
 
@@ -38,6 +39,9 @@ export default {
   name: "Home",
   data: function(){
     return {logoSvg};
+  },
+  components: {
+    LogoSVG
   },
   methods: {
     goToBrowse: function() {
