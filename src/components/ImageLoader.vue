@@ -1,22 +1,32 @@
 <template>
   <div>
     <div class="cropper-container" v-show="isCropping">
-      <button v-show="!fileLoaded" @click="tryAgain">Upload an Image File</button>
+      <button v-show="!fileLoaded" @click="tryAgain">
+        {{$t("image_loader.upload_an_image_file")}}
+      </button>
       <div class="outercropper"><Cropper :src="dataurl" :stencilProps="{aspectRatio: getAspectRatio()}" :defaultPositon="defPos" :defaultSize="defSize" ref="cropper" @change="onCrop" /></div>
       <div class="muralInputArea" :v-if="patternType == 9">
         <div class="muralInputColumn"> 
-          <label>Patterns Wide</label></br>
+          <label>
+            {{$t("image_loader.patterns_wide")}}
+          </label>
+          </br>
           <input type="range" min="1" max="8" v-model="muralWide"/>
           <input type="number" min="1" max="50" v-model="muralWide"/>
         </div>
         <div class="muralInputColumn"> 
-          <label>Patterns Tall</label></br>
+          <label>
+            {{$t("image_loader.patterns_tall")}}
+          </label>
+          </br>
           <input type="range" min="1" max="8" v-model="muralTall"/>
           <input type="number" min="1" max="50" v-model="muralTall"/>
         </div>
       </div>
       <div class="buttons">
-        <button @click="toggleView()">Next</button>
+        <button @click="toggleView()">
+          {{$t("image_loader.next")}}
+        </button>
       </div>
     </div>
     <input v-show="false" type="file" ref="files" accept="image/*" @change="onFile" />
@@ -26,33 +36,58 @@
         <canvas v-show="false" ref="preview" />
         <canvas v-show="false" ref="postview" width=64 height=64 />
         <canvas ref="postmix" class="postview" width=256 height=256 />
-
         <ul class="options">
-          <li :class="{active: convert_method === 'quantize'}" @click="changeConversion('quantize')">Quantize by Median-Cut</li>
-          <li :class="{active: convert_method === 'rgb'}" @click="changeConversion('rgb')">Nearest RGB Colors</li>
-          <li :class="{active: convert_method === 'yuv'}" @click="changeConversion('yuv')">Nearest YUV Colors</li>
-          <li :class="{active: convert_method === 'grey'}" @click="changeConversion('grey')">To Greyscale</li>
-          <li :class="{active: convert_method === 'sepia'}" @click="changeConversion('sepia')">To Sepia</li>
+          <li :class="{active: convert_method === 'quantize'}" @click="changeConversion('quantize')">
+            {{$t("image_loader.quantize_by_median_cut")}}
+          </li>
+          <li :class="{active: convert_method === 'rgb'}" @click="changeConversion('rgb')">
+            {{$t("image_loader.nearest_rgb_colors")}}
+          </li>
+          <li :class="{active: convert_method === 'yuv'}" @click="changeConversion('yuv')">
+            {{$t("image_loader.nearest_yuv_colors")}}
+          </li>
+          <li :class="{active: convert_method === 'grey'}" @click="changeConversion('grey')">
+            {{$t("image_loader.to_greyscale")}}
+          </li>
+          <li :class="{active: convert_method === 'sepia'}" @click="changeConversion('sepia')">
+            {{$t("image_loader.to_sepia")}}
+          </li>
         </ul>
         <ul class="options">
-          <li :class="{active: convert_quality === 'high'}" @click="changeQuality('high')">High Quality</li>
-          <li :class="{active: convert_quality === 'medium'}" @click="changeQuality('medium')">Medium Quality</li>
-          <li :class="{active: convert_quality === 'low'}" @click="changeQuality('low')">Low Quality</li>
-          <li :class="{active: convert_quality === 'sharp'}" @click="changeQuality('sharp')">Sharp Pixels</li>
+          <li :class="{active: convert_quality === 'high'}" @click="changeQuality('high')">
+            {{$t("image_loader.high_quality")}}
+          </li>
+          <li :class="{active: convert_quality === 'medium'}" @click="changeQuality('medium')">
+            {{$t("image_loader.medium_quality")}}
+          </li>
+          <li :class="{active: convert_quality === 'low'}" @click="changeQuality('low')">
+            {{$t("image_loader.low_quality")}}
+          </li>
+          <li :class="{active: convert_quality === 'sharp'}" @click="changeQuality('sharp')">
+            {{$t("image_loader.sharp_pixels")}}
+          </li>
         </ul>
         <ul class="options">
-          <label>Transparency %</label></br>
+          <label>Transparency</label></br>
           <input type="range" min="1" max="100" v-model="convert_trans" @change="changeTrans" />
           <input type="number" min="1" max="100" v-model="convert_trans" @change="changeTrans" />
         </ul>
         <ul class="options" :v-if="muralTall > 1 || muralWide > 1">
-          <li :class="{active: convert_samepal === true}" @click="changeSamepal(true)">Shared palette</li>
-          <li :class="{active: convert_samepal === false}" @click="changeSamepal(false)">Split palette</li>
+          <li :class="{active: convert_samepal === true}" @click="changeSamepal(true)">
+            {{$t("image_loader.shared_palette")}}
+          </li>
+          <li :class="{active: convert_samepal === false}" @click="changeSamepal(false)">
+            {{$t("image_loader.split_palette")}}
+          </li>
         </ul>
       </div>
       <div class="buttons">
-        <button @click="toggleView()">Edit Crop</button>
-        <button @click="$emit('converted', outputs)">Convert!</button>
+        <button @click="toggleView()">
+          {{$t("image_loader.edit_crop")}}
+        </button>
+        <button @click="$emit('converted', outputs)">
+          {{$t("image_loader.convert")}}
+        </button>
       </div>
     </div>
   </div>
@@ -463,13 +498,9 @@ export default {
 
 <style lang="scss" scoped>
   button {
-    border-radius: 35px;
     text-transform: uppercase;
     padding: 10px 14px;
     border: none;
-    background-color: #00B6A7;
-    color: #ffffff;
-    box-shadow: rgba(0,0,0,0.2) 0 0 8px;
     cursor: pointer;
     font-weight: 800;
   }

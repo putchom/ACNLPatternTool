@@ -87,11 +87,8 @@ export default {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    border-radius: 0 35px 35px 0;
     height: 200px;
     width: 75px;
-    background-color: #fae4dc;
-    box-shadow: rgba(0,0,0,0.2) 0 0 8px;
   }
 
   .tool-selector button {

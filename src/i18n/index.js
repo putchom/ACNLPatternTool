@@ -4,6 +4,7 @@ import { isProd } from '/utils/if-env';
 
 // language files
 import en from '/i18n/en';
+import ja from '/i18n/ja';
 
 // needs to be registered before instance
 Vue.use(VueI18n);
@@ -16,6 +17,7 @@ const i18n = new VueI18n({
   messages: {
     // add languages here
     en,
+    ja,
   }
 });
 

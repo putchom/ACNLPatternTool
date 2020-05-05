@@ -1,0 +1,40 @@
+// use page based organization at top level
+// update this template.js every time
+// you add a new entry
+export default {
+  editor: {
+    change: "変更",
+    open_color_editor: "他の色",
+    close: "閉じる",
+    convert: "画像からつくる",
+    generate_qr_code: "QRコードを生成",
+    save_image: "画像を保存",
+    edit_pattern_details: "マイデザインの情報を編集",
+    title: "タイトル",
+    author: "作者",
+    town: "町",
+    type: "種類",
+    cancel: "キャンセル",
+    save: "保存",
+  },
+  image_loader: {
+    upload_an_image_file: "画像をアップロード",
+    patterns_wide: "横",
+    patterns_tall: "縦",
+    next: "次へ",
+    quantize_by_median_cut: "メディアンカット法で量子化する",
+    nearest_rgb_colors: "RGBカラーに最も近くする",
+    nearest_yuv_colors: "YUVカラーに最も近くする",
+    to_greyscale: "グレースケール化する",
+    to_sepia: "セピア化する",
+    high_quality: "高解像度",
+    medium_quality: "中解像度",
+    low_quality: "低解像度",
+    sharp_pixels: "ピクセル化",
+    transparency: "不透明度",
+    shared_palette: "共有されたパレット",
+    split_palette: "分割されたパレット",
+    edit_crop: "切り抜きに戻る",
+    convert: "つくる",
+  },
+};
